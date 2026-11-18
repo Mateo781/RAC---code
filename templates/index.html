@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +11,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Estilos locales -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
     <div class="glow-bg"></div>
-    
+
     <div class="container">
         <!-- HEADER -->
         <header>
             <div class="logo">
-                <img src="{{ url_for('static', filename='logo_rac.png') }}" alt="RAC Logo" class="logo-img">
+                <img src="/static/logo_rac.png" alt="RAC Logo" class="logo-img">
                 <div class="logo-divider"></div>
                 <div>
                     <h1>DETECTOR DE CASCOS DE SEGURIDAD AI</h1>
@@ -100,7 +103,8 @@
                 <div class="card log-card">
                     <div class="card-header">
                         <h2><i class="fa-solid fa-list-check"></i> Historial de Detección</h2>
-                        <button class="btn-clear" id="btn-clear-log"><i class="fa-solid fa-trash-can"></i> Limpiar</button>
+                        <button class="btn-clear" id="btn-clear-log"><i class="fa-solid fa-trash-can"></i>
+                            Limpiar</button>
                     </div>
                     <div class="log-container" id="log-list">
                         <div class="log-placeholder" id="log-placeholder">
@@ -136,7 +140,7 @@
         const probSinVal = document.getElementById('prob-sin-val');
         const barCon = document.getElementById('bar-con');
         const barSin = document.getElementById('bar-sin');
-        
+
         const statusPanel = document.getElementById('status-panel');
         const currentStateText = document.getElementById('current-state-text');
         const currentDescText = document.getElementById('current-desc-text');
@@ -165,7 +169,7 @@
                     video: { width: { ideal: 640 }, height: { ideal: 480 } },
                     audio: false
                 });
-                
+
                 video.srcObject = localStream;
                 video.onloadedmetadata = () => {
                     video.play();
@@ -174,7 +178,7 @@
                     setTimeout(() => { loadingOverlay.style.display = 'none'; }, 300);
                     btnStart.disabled = true;
                     btnStop.disabled = false;
-                    
+
                     // Configurar pulso de sistema
                     systemPulse.className = "pulse-dot active";
                     systemStatusText.innerText = "Monitoreando";
@@ -199,16 +203,16 @@
                 localStream = null;
             }
             video.srcObject = null;
-            
+
             // Restablecer overlay y ui
             overlayCtx.clearRect(0, 0, overlay.width, overlay.height);
             loadingOverlay.style.display = 'flex';
             setTimeout(() => { loadingOverlay.style.opacity = '1'; }, 50);
             loadingOverlay.innerHTML = '<i class="fa-solid fa-camera-rotate spinner"></i><p>Inicia la cámara para comenzar</p>';
-            
+
             btnStart.disabled = false;
             btnStop.disabled = true;
-            
+
             systemPulse.className = "pulse-dot idle";
             systemStatusText.innerText = "Detenido";
 
@@ -220,7 +224,7 @@
             probSinVal.innerText = "0.0%";
             barCon.style.width = "0%";
             barSin.style.width = "0%";
-            
+
             statusPanel.className = "card status-card info-card";
             currentStateText.innerText = "Buscando Rostro...";
             currentDescText.innerText = "Inicia la cámara y colócate frente a ella.";
@@ -239,7 +243,7 @@
 
             // Dibujar frame en el canvas oculto
             captureCtx.drawImage(video, 0, 0, captureCanvas.width, captureCanvas.height);
-            
+
             // Comprimir frame a Base64 JPEG
             const base64Image = captureCanvas.toDataURL('image/jpeg', 0.85);
 
@@ -288,11 +292,11 @@
                 overlayCtx.lineWidth = 4;
                 overlayCtx.shadowBlur = 15;
                 overlayCtx.shadowColor = color;
-                
+
                 // Dibujar caja rectangular con bordes estéticos
                 overlayCtx.strokeRect(x, y, w, h);
                 overlayCtx.shadowBlur = 0; // Reset
-                
+
                 // Etiqueta en el canvas
                 overlayCtx.fillStyle = color;
                 overlayCtx.font = "bold 16px Outfit, sans-serif";
@@ -334,9 +338,9 @@
 
             const item = document.createElement('div');
             item.className = `log-item ${cssClass}`;
-            
+
             const icon = label === "Con Casco" ? "fa-circle-check" : "fa-circle-exclamation";
-            
+
             item.innerHTML = `
                 <div class="log-info">
                     <i class="fa-solid ${icon}"></i>
@@ -376,4 +380,5 @@
         window.addEventListener('beforeunload', stopWebcam);
     </script>
 </body>
+
 </html>

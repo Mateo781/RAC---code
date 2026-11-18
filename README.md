@@ -107,3 +107,18 @@ La red convolucional implementada en [ea.py](file:///c:/Users/Alex/Desktop/ae/ea
 6.  **Flatten:** Aplanado de las características en un vector unidimensional.
 7.  **Dense:** Capa completamente conectada con 100 neuronas y activación *ReLU*.
 8.  **Dense (Salida):** 2 neuronas con función de activación *Softmax* para obtener la distribución de probabilidad de las clases (`con_casco` y `sin_casco`).
+
+---
+
+## 🎬 Video Demo y Pitch del Proyecto
+
+> **Entregable — Actividad 17: Guía Práctica para el Video Demo y Pitch del Proyecto**  
+> *Materia:* Proyecto de Implementación de Sitios web Dinámicos (PWD) — 7° año 2° Grupo B  
+> *Institución:* EEST N.º 1 “Eduardo Ader” Vicente López  
+
+Demostración en video del funcionamiento, objetivos y resolución del problema del proyecto:
+
+[![Video Demo y Pitch](https://img.youtube.com/vi/GF8_VIE42TM/hqdefault.jpg)](https://www.youtube.com/watch?v=GF8_VIE42TM)
+
+🔗 **Enlace al video:** [https://www.youtube.com/watch?v=GF8_VIE42TM](https://www.youtube.com/watch?v=GF8_VIE42TM)
+
